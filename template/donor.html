@@ -1,0 +1,310 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Request</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .header{
+            height: max-content;
+            align-items: center;
+            background-color: white;
+            border: none;
+            border-bottom: rgb(207, 207, 207) solid 2px;
+        }
+
+        ul{
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            text-align: justify;
+            gap: 22px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        ul li{
+            list-style: none;
+            text-align: right;
+        }
+
+        ul li a{
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            color: rgb(16, 8, 8);
+            padding: 10px;
+        }
+
+        ul:hover li a{
+            color: rgba(219, 41, 41, 0.854);
+        }
+
+        ul:hover li a:not(:hover){
+            color: rgb(16, 8, 8);
+            opacity: 0.3;
+            filter: blur(0.2px);
+        }
+
+        .headerTag{
+            display: flex;
+            gap: 46%;
+        }
+
+        .nbs_name{
+            padding: 15px;
+        }
+
+        .logo{
+            display: flex;
+            padding-top: 2px;
+        }
+
+        .form{
+            padding-top: 20px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        fieldset{
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        legend{
+            margin-right: 3px;
+            margin-right: 3pxs;
+        }
+
+        input{
+            height: 25px;
+            width: 350px;
+            gap: 10px;
+            padding-right: 30px;
+        }
+
+        .fullname{
+            margin-right: 22px;
+        }
+
+        .date{
+            display: flex;
+            gap: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            
+        }
+
+        .date input{
+            width: 200px;
+            border: none;
+            border-bottom: rgb(207, 207, 207) solid 2px;
+        }
+
+        .gender{
+            display: flexs;
+        }
+
+        .donation_status{
+            display: flex;
+            gap: 30px;
+        }
+
+        .donation_status input{
+            width: 200px;
+        }
+
+        .donor_card input{
+            width: 200px;
+            margin-left: 3pxs;
+        } 
+
+        .family{
+            display: flex;
+            gap: 30px;
+        }
+
+        .family input{
+            width: 300px;
+            gap: 30px;
+            
+        }
+
+        input[type=checkbox]{
+            vertical-align: middle;
+            position: relative;
+            bottom: 1px;
+        }
+
+        .checkbox{
+            display: inline;
+            gap: 10px;
+        }
+
+        .submit{
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            align-self: flex-end;
+            margin-left: 10px;
+        }
+
+        .submit a{
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!--Header-->
+    <div class="header">
+        <div class="headerTag">
+            <ul class="headerList">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">GET INVOLVED</a></li>
+                <li><a href="#">MEDIA</a></li>
+                <li><a href="#">CONTACT US</a></li>
+            </ul>
+            <div class="logo">
+                <h3 class="nbs_name">National Blood Service</h3>
+                <img src="nbs_logo_2" alt="" width="52px" height="52px">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!--Donor Form-->
+    <div class="form">
+        <form action="donor" method="POST">
+            {% csrf_token %}
+            <div class="date">
+                <h3>Date: </h3>
+                <input type="date" placeholder="date">
+            </div>
+            <br>
+
+            <!--Personal Details-->
+            <fieldset class="personal">
+                <legend><h2>Personal Details</h2></legend>
+                <h3>Fullname</h3>
+                <br>
+                <div class="fullname">
+                    <input type="text" name="firstname" placeholder="First Name">
+                    <input type="text" name="middlename" placeholder="Middle Name">
+                    <input type="text" name="lastname" placeholder="Last Name">
+                </div> 
+                <br>
+                <h3>Contacts</h3>
+                <br>
+                <div class="contact">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="text" name="phone_number" placeholder="Phone Number">
+                </div>
+                <br>
+                <h3>Location</h3>
+                <br>
+                <div class="location">
+                    <label for="Region">Select Region</label>
+                    <select name="region" id="region">
+                        <option value="g_accra">Ahafo Region</option>
+                        <option value="eastern">Ashanti Region</option>
+                        <option value="eastern">Bono East Region</option>
+                        <option value="eastern">Brong Ahafo Region</option>
+                        <option value="eastern">Central Region</option>
+                        <option value="eastern">Eastern Region</option>
+                        <option value="eastern">Greater Accra Region</option>
+                        <option value="eastern">North East Region</option>
+                        <option value="eastern">Northern Region</option>
+                        <option value="eastern">Oti Region</option>
+                        <option value="eastern">Savannah Region</option>
+                        <option value="eastern">Upper East Region</option>
+                        <option value="eastern">Upper West Region</option>
+                        <option value="eastern">Western Region</option>
+                        <option value="eastern">Western North Region</option>
+                        <option value="eastern">Volta Region</option>
+                    </select>
+                    <input type="text" name="area_or" placeholder="Area of Residence">
+                    <input type="text" name="town" placeholder="Town/City">
+                </div>
+                <br>
+                <h3>Identifictaion Cards</h3>
+                <br>
+                <div class="id_cards">
+                    <p>ID Type</p>
+                    <br>
+                    <div class="checkbox">
+                        <input type="checkbox" name="id_card" id="National_ID" >: National ID<br>
+                        <input type="checkbox" name="id_card" id="Passport">: Passport<br>
+                        <input type="checkbox" name="id_card" id="Driver">: Driver's License<br>
+                        <input type="checkbox" name="id_card" id="Voter_ID">: Voter's ID<br>
+                        <input type="checkbox" name="id_card" id="NHIS">: NHIS Card<br>
+                        <input type="checkbox" name="id_card" id="Stu_ID">: Student's ID<br>
+                        <input type="checkbox" name="id_card" id="others">Others<br>
+                    </div>
+                    <br>
+                    <p>ID Card Number: <input type="text" name="id_number"></p>
+                </div>
+            </fieldset>
+            <br>
+            <br>
+
+            <!--History-->
+            <fieldset class="personal">
+                <legend><h2>Donation History</h2></legend>
+                <h3>Have you donated blood before? </h3>
+                <label for="donated">Select answer</label>
+                <select name="donated" id="donated">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br>
+                <br>
+                <div class="donation_status">
+                    <p>If yes, what is your last donation date? <input type="date" name="donation_date" class="donation_date"></p>
+                    <p>How many times have you donated? <input type="number" name="donor_number"> </p>
+                </div> 
+                <br>
+                <div class="card">
+                    <p class="donor_card">Donor Card Number: <input type="number" name="donor_card"></p>
+                </div>
+                <br>
+            </fieldset>
+            <br>
+            <br>
+            
+            <!--Family donor-->
+            <fieldset class="personal">
+                <legend><h2>Replacement/Family Donors Only</h2></legend>
+                <h3>Fullname</h3>
+                <br>
+                <div class="family">
+                    <p>Name of Patient: <input type="text" name="patientname" placeholder="Name of Patient"></p>
+                    <p>Hospital: <input type="text" name="hospital"></p>
+                    <p>Ward: <input type="text" name="ward"></p>
+                </div> 
+                <br>
+                </div>
+            </fieldset>
+            <br>
+            <br>
+            <!--Button-->
+            <button class="submit">Submit</button>
+            <br><br>
+        </form>    
+    </div>   
+</body>
+</html>
